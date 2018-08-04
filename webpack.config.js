@@ -12,6 +12,7 @@ module.exports = {
         hot: false,
         inline: false
     },
+    devtool: 'source-map',
     mode: "development",
     module: {
         rules: [
@@ -19,8 +20,8 @@ module.exports = {
               test: /\.js?$/,
               exclude: /(node_modules)/,
               loader: "babel-loader",
-              options: {
-                presets: ["es2015", "react"]
+              query: {
+                presets: ["es2015", "react", "stage-2"],
               }
             },
             {

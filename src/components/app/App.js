@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
-import { createStor } from 'redux';
+import { connect } from "react-redux";
+import { setName } from '../../actions/app';
 import './app.less';
 
-export default class App extends Component {
+class App extends Component {
     render() {
+        const { props } = this;
         return (
-            <div>App</div>
+            <div>
+                <div>name is {props.app.name}</div>
+                <button 
+                    onClick={() => props.setName('Anna') }
+                >set name </button>
+            </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        app: state.app,
+    };
+ };
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setName: (name) => {
+            dispatch(setName(name));
+        }
+    };
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps)(App);
